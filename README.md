@@ -1,8 +1,8 @@
-#Purpose
+# Purpose
 
 Demonstrates logical replication over SSL.
 
-#To Run:
+# To Run:
 
 1. `docker-compose up pub`
 1. `docker-compose up sub` _after_ pub is up
