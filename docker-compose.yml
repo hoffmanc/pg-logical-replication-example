@@ -1,0 +1,24 @@
+version: '3'
+services:
+  pub:
+    image: postgres:14
+    command: -c config_file=/app/postgresql.conf -c hba_file=/app/pg_hba.conf
+    volumes:
+      - ./pub:/app
+      - ./ssl:/ssl
+      - ./initdb:/docker-entrypoint-initdb.d/
+      - ./pub/init.sh:/docker-entrypoint-initdb.d/pub.sh
+    environment:
+      POSTGRES_PASSWORD: 'admin'
+  sub:
+    image: postgres:14
+    command: -c config_file=/app/postgresql.conf
+    volumes:
+      - ./sub:/app
+      - ./ssl:/ssl
+      - ./initdb:/docker-entrypoint-initdb.d/
+      - ./sub/init.sh:/docker-entrypoint-initdb.d/sub.sh
+    environment:
+      POSTGRES_PASSWORD: 'admin'
+    depends_on:
+      - pub
