@@ -4,6 +4,7 @@ Demonstrates logical replication over SSL.
 
 # To Run:
 
+1. `./gen_postgres_certs.sh`
 1. `docker-compose up pub`
 1. `docker-compose up sub` _after_ pub is up
 1. witness replication starting and finishing
